@@ -97,7 +97,9 @@ function App() {
         if (page === 1) {
           setImages(result.results);
         } else {
-          setImages((prevImages) => [...prevImages, ...result.results]);
+          setImages((prevImages) =>
+            prevImages ? [...prevImages, ...result.results] : result.results
+          );
         }
       } catch (error) {
         setError(true);
