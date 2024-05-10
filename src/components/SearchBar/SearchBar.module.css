@@ -1,0 +1,26 @@
+.header {
+  background-color: blueviolet;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 48px;
+}
+.input {
+  width: 260px;
+  height: 32px;
+  border-radius: 4px;
+  border: 2px solid rgb(90, 87, 87);
+}
+
+.formBtn {
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  color: rgb(88, 87, 87);
+}

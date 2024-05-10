@@ -1,0 +1,16 @@
+.btnLoadMore {
+  cursor: pointer;
+  background-color: blueviolet;
+  border: 2px solid rgb(61, 60, 60);
+  border-radius: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: rgb(243, 243, 243);
+  margin-bottom: 28px;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
