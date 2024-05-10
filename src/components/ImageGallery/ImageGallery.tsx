@@ -1,7 +1,13 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import { IPhoto } from "../../App";
+import React from "react";
 
-const ImageGallery = ({ images, openModal }) => {
+interface ImageGalleryProp {
+  images: IPhoto[];
+  openModal: () => void;
+}
+const ImageGallery: React.FC<ImageGalleryProp> = ({ images, openModal }) => {
   const hasImages = Array.isArray(images) && images.length > 0;
   return (
     <div>
