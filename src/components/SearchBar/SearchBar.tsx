@@ -12,12 +12,13 @@ const SearchBar: FC<SearchBarProps> = ({ handleSearch }) => {
     const query = (evt.target as HTMLFormElement).elements.namedItem(
       "query"
     ) as HTMLInputElement;
-    if (query.trim() === "") {
-      toast.error("Please enter search term!");
+    if (query.value.trim() === "") {
+      toast.error("Please enter a search term!");
       return;
     }
     handleSearch(query.value);
-    evt.target.reset();
+    const form = evt.target as HTMLFormElement;
+    form.reset();
   };
 
   return (

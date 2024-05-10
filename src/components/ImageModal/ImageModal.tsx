@@ -1,5 +1,17 @@
 import Modal from "react-modal";
-const ImageModal = ({
+
+interface ImageModalProps {
+  closeModal: () => void;
+  modalIsOpen: boolean;
+  customStyles: Modal.Styles;
+  clickedImage: {
+    urls: {
+      regular: string;
+    };
+    alt_description: string;
+  } | null;
+}
+const ImageModal: React.FC<ImageModalProps> = ({
   closeModal,
   modalIsOpen,
   customStyles,

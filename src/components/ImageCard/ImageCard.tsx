@@ -1,5 +1,11 @@
 import css from "./ImageCard.module.css";
-const ImageCard = ({ images, openModal }) => {
+import { IPhoto } from "../../App";
+
+interface ImageCardProps {
+  images: IPhoto;
+  openModal: (clickedImage: IPhoto) => void;
+}
+const ImageCard: React.FC<ImageCardProps> = ({ images, openModal }) => {
   return (
     <div>
       <img
