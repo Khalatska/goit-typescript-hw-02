@@ -4,8 +4,8 @@ import { IPhoto } from "../../App";
 import React from "react";
 
 interface ImageGalleryProp {
-  images: IPhoto[];
-  openModal: () => void;
+  images: IPhoto[] | null;
+  openModal: (clickedImage: IPhoto) => void;
 }
 const ImageGallery: React.FC<ImageGalleryProp> = ({ images, openModal }) => {
   const hasImages = Array.isArray(images) && images.length > 0;
