@@ -31,17 +31,44 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
+export interface IPhoto {
+  id: string;
+  urls: {
+    raw: string;
+    full: string;
+    regular: string;
+    small: string;
+    thumb: string;
+    small_s3: string;
+  };
+  alt_description: string;
+  updated_at: string;
+  links: {
+    self: string;
+    html: string;
+    download: string;
+    download_location: string;
+  };
+  likes: number;
+}
+
+export interface IPhotosResponse {
+  results: IPhoto[];
+  total: number;
+}
+type Photos = IPhoto[] | null;
+
 function App() {
   const [query, setQuery] = useState<string>("");
-  const [images, setImages] = useState<any[] | null>(null);
+  const [images, setImages] = useState<Photos>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setError] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [clickedImg, setClickedImage] = useState<string>("");
+  const [clickedImg, setClickedImage] = useState<IPhoto>();
   const [isLastPage, setLastPage] = useState<boolean>(false);
 
-  function openModal(clickedImage: string) {
+  function openModal(clickedImage: IPhoto) {
     setClickedImage(clickedImage);
     setIsOpen(true);
   }
@@ -55,11 +82,11 @@ function App() {
     if (query.length === 0) return;
     unsplashApi.query = query;
     unsplashApi.currentPage = page;
-    async function fetchSerachedImg<T>(): Promise<T> {
+    async function fetchSerachedImg() {
       try {
         setError(false);
         setIsLoading(true);
-        const result = await unsplashApi.fetchImages<T>();
+        const result = await unsplashApi.fetchImages<IPhotosResponse>();
         unsplashApi.totalResult = result.total;
         const maxPage = Math.ceil(unsplashApi.totalResult / 12);
         const lastPage = maxPage <= unsplashApi.currentPage;

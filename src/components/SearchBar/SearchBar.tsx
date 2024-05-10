@@ -1,15 +1,22 @@
 import toast, { Toaster } from "react-hot-toast";
-import css from './SearchBar.module.css'
+import css from "./SearchBar.module.css";
+import React, { FC, FormEvent } from "react";
 
-const SearchBar = ({ handleSearch }) => {
-  const handleSubmit = (evt) => {
+interface SearchBarProps {
+  handleSearch: (query: string) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ handleSearch }) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const query = evt.target.elements.query.value;
+    const query = (evt.target as HTMLFormElement).elements.namedItem(
+      "query"
+    ) as HTMLInputElement;
     if (query.trim() === "") {
       toast.error("Please enter search term!");
       return;
     }
-    handleSearch(query);
+    handleSearch(query.value);
     evt.target.reset();
   };
 
@@ -26,7 +33,9 @@ const SearchBar = ({ handleSearch }) => {
             placeholder="Search images and photos"
             className={css.input}
           />
-          <button type="submit" className={css.formBtn}>Search</button>
+          <button type="submit" className={css.formBtn}>
+            Search
+          </button>
         </form>
       </header>
     </div>
