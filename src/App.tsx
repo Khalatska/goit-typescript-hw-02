@@ -129,12 +129,14 @@ function App() {
       {Array.isArray(images) && images.length > 0 && !isLastPage && (
         <LoadMoreBtn handleClick={handleClick} />
       )}
-      <ImageModal
-        closeModal={closeModal}
-        modalIsOpen={modalIsOpen}
-        customStyles={customStyles}
-        clickedImage={clickedImg}
-      />
+      {clickedImg && (
+        <ImageModal
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+          customStyles={customStyles}
+          clickedImage={clickedImg}
+        />
+      )}
     </div>
   );
 }
